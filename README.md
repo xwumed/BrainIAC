@@ -98,6 +98,11 @@ docker run -p 7860:7860 divyanshutak1/brainiac-mci:latest
 
 ## License
 
-BrainIAC is released under the CC BY-NC License. See [LICENSE](LICENSE) for details.
+This project is licensed for non-commercial academic research use only.
+Commercial use is not permitted without a separate license from
+Mass General Brigham.
+
+For commercial licensing inquiries, please contact the
+Mass General Brigham Office of Technology Development. See [LICENSE](LICENSE) for details.
 
 
