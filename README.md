@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 Download the BrainIAC weights and dowstream model checkpoints and place it in `./src/checkpoints/`:
 
-**Download Link:** [Model Checkpoints](https://www.dropbox.com/scl/fo/i51xt63roognvt7vuslbl/AG99uZljziHss5zJz4HiFis?rlkey=9w55le6tslwxlfz6c0viylmjb&e=1&st=r5nyejyo&dl=0)
+
 
 
 
