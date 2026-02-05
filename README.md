@@ -65,14 +65,17 @@ BrainIAC and all the downstream models are hosted at [**Brainiac Platform**](htt
 ## Citation
 
 ```bibtex
-@article{tak2024brainiac,
-    title={BrainIAC: A Foundation Model for Generalized Brain MRI Analysis},
-    author={Tak, Divyanshu and others},
-    journal={medRxiv},
-    year={2024},
-    doi={10.1101/2024.12.02.24317992}
+@article{tak2026generalizable,
+  title={A generalizable foundation model for analysis of human brain MRI},
+  author={Tak, Divyanshu and Gormosa, B.A. and Zapaishchykova, A. and others},
+  journal={Nature Neuroscience},
+  year={2026},
+  publisher={Springer Nature},
+  doi={10.1038/s41593-026-02202-6},
+  url={https://doi.org/10.1038/s41593-026-02202-6}
 }
 ```
+
 
 ## License
 
