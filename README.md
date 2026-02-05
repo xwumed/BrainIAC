@@ -13,8 +13,8 @@ BrainIAC (Brain Imaging Adaptive Core) is vision based foundation model for gene
 
 ### Prerequisites
 - Python 3.9+
-- CUDA 11.0+ (for GPU training)
-- python >= 3.9
+- CUDA 11.0+ 
+
 
 
 ### Setup Environment
@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 ## Model Checkpoints
 
-Download the BrainIAC weights and dowstream model checkpoints and place it in `./src/checkpoints/`:
+Download the BrainIAC weights and downstream model [checkpoints](https://www.dropbox.com/scl/fo/i51xt63roognvt7vuslbl/AG99uZljziHss5zJz4HiFis?rlkey=9w55le6tslwxlfz6c0viylmjb&st=b9cnvwh8&dl=0) and place them in `./src/checkpoints/`:
 
 
 
