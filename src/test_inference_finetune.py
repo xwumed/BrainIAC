@@ -26,58 +26,58 @@ from dataset import (BrainAgeDataset, MCIStrokeDataset, SequenceDataset, DualIma
 # Model paths
 SIMCLR_CKPT_PATH = "/media/data/divyanshu/foundation_model/Brainiac_revision/checkpoints/simclr_vitb_checkpoints/brainiac_trainval32k_simclr_normandscaling_vitb_cls_normonly_biasbeforenorm_lr0005_best-model-epoch=18-train_loss=0.00.ckpt"
 
-# Dataset configurations - Add your datasets here
+# Dataset configurations
 DATASETS = {
     "survival_task": {
-        "checkpoint_path": "/media/data/divyanshu/BrainIAC_V2/checkpoints/BrainIAC_OS.ckpt",
-        "test_csv_path": "/media/data/divyanshu/foundation_model/brainiac_data/os/csv/brats_clinical.csv",
-        "root_dir": "/media/data/divyanshu/foundation_model/brainiac_data/os/data",
-        "output_csv_path": "/media/data/divyanshu/BrainIAC_V2/inference/os_100_test_predictions_brats_clinical.csv",
+        "checkpoint_path": "./checkpoints/os.ckpt",
+        "test_csv_path": "./data/csv/test.csv",
+        "root_dir": ".",
+        "output_csv_path": "./inference/output.csv",
         "task_type": "classification",
         "image_type": "quad",
         "num_classes": 1
     },
     "idh_task": {
-        "checkpoint_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/checkpoints/simclrvitfinetune_checkpoints/100percent_idh_simclrvitcls_0001_best-model-epoch=99-val_auroc=0.87.ckpt",
-        "test_csv_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/simclrvit_finetuning/idh_csvs/test.csv",
-        "root_dir": "/media/data/divyanshu/foundation_model/brainiac_data",
-        "output_csv_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/simclrvit_finetuning/perturbation_results/idh_100_test_predictions.csv",
+        "checkpoint_path": "./checkpoints/idh.ckpt",
+        "test_csv_path": "./data/csv/test.csv",
+        "root_dir": ".",
+        "output_csv_path": "./inference/output.csv",
         "task_type": "classification",
         "image_type": "dual",
         "num_classes": 1
     },
     "mci_task": {
-        "checkpoint_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/checkpoints/simclrvitfinetune_checkpoints/100percent_mci_tejas_cls_simclrvitcls_0005_best-model-epoch=09-val_auc=0.78.ckpt",
-        "test_csv_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/mae_finetuning/mci_oasis1_csvs/test.csv",
-        "root_dir": "/media/data/divyanshu/foundation_model/brainiac_data",
-        "output_csv_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/simclrvit_finetuning/perturbation_mci/dummy_100_mcitestverificationresults.csv",
+        "checkpoint_path": "./checkpoints/mci.ckpt",
+        "test_csv_path": "./data/csv/test.csv",
+        "root_dir": ".",
+        "output_csv_path": "./inference/output.csv",
         "task_type": "classification",
         "image_type": "single",
         "num_classes": 1
     },
     "sequence_task": {
-        "checkpoint_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/simclrvit_finetuning/frozen_downstream_checkpoints/100percent_seq_tejas_cls_swinvit_0008_best-model-epoch=76-val_auc=0.95.ckpt",
-        "test_csv_path": "/media/data/divyanshu/foundation_model/brainiac_data/BRATS23_dataset/csv/testing_dataset_info.csv",
-        "root_dir": "/media/data/divyanshu/foundation_model/brainiac_data",
-        "output_csv_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/simclrvit_finetuning/frozen_finetune_medicalnet/multiclass_100_test_predictions.csv",
+        "checkpoint_path": "./checkpoints/multiclass.ckpt",
+        "test_csv_path": "./data/csv/test.csv",
+        "root_dir": ".",
+        "output_csv_path": "./inference/output.csv",
         "task_type": "multiclass",
         "image_type": "single",
         "num_classes": 4
     },
     "brainage_task": {
-        "checkpoint_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/checkpoints/simclrvitfinetune_checkpoints/100percent_brainage_tejas_cls_simclrvitcls_001_best-model-epoch=49-val_mae=65.54.ckpt",
-        "test_csv_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/mae_finetuning/brainage_csvs/ALL_TEST.csv",
-        "root_dir": "/media/data/divyanshu/foundation_model/brainiac_data",
-        "output_csv_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/simclrvit_finetuning/brainage_inference_output/brain_age_10_test_predictions_ext.csv",
+        "checkpoint_path": "./checkpoints/brainage.ckpt",
+        "test_csv_path": "./data/csv/test.csv",
+        "root_dir": ".",
+        "output_csv_path": "./inference/output.csv",
         "task_type": "regression",
         "image_type": "single",
         "num_classes": 1
     },
     "timetostroke_task": {
-        "checkpoint_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/simclrvit_finetuning/frozen_downstream_checkpoints/100percent_stroke_tejas_cls_swinvit_0008_best-model-epoch=19-val_mae=55.83.ckpt",
-        "test_csv_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/few_shot_benchmarking/few_shot_csvs/stroke/V2_cropped_test.csv",
-        "root_dir": "/media/data/divyanshu/foundation_model/brainiac_data",
-        "output_csv_path": "/media/data/divyanshu/foundation_model/Brainiac_revision/simclrvit_finetuning/perturbation_results/stroke_100_test_predictions.csv",
+       "checkpoint_path": "./checkpoints/stroke.ckpt",
+        "test_csv_path": "./data/csv/test.csv",
+        "root_dir": ".",
+        "output_csv_path": "./inference/output.csv",
         "task_type": "regression",
         "image_type": "single",
         "num_classes": 1
@@ -91,10 +91,10 @@ DATASETS_TO_RUN = [
 
 # Data configuration
 IMAGE_SIZE = (96, 96, 96)
-BATCH_SIZE = 1  # Keep small for inference
+BATCH_SIZE = 1  
 NUM_WORKERS = 1
 
-# GPU configuration
+
 DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 # =============================================================================
@@ -105,13 +105,13 @@ def load_model(checkpoint_path, simclr_ckpt_path, task_type="classification", im
     """
     print(f"Loading model from {checkpoint_path}")
     
-    # Create backbone
+    #  backbone
     backbone = ViTBackboneNet(simclr_ckpt_path=simclr_ckpt_path)
     
-    # Create classifier
+    #  classifier
     classifier = Classifier(d_model=768, num_classes=num_classes)
     
-    # Create full model based on image type
+    #  full model
     if image_type == "single":
         model = SingleScanModel(backbone, classifier)
     elif image_type == "dual":
@@ -127,11 +127,11 @@ def load_model(checkpoint_path, simclr_ckpt_path, task_type="classification", im
     # Extract state dict - handle Lightning module format
     if "state_dict" in checkpoint:
         state_dict = checkpoint["state_dict"]
-        # Remove Lightning module prefixes
+        # lightning module compatiblity
         new_state_dict = {}
         for key, value in state_dict.items():
             if key.startswith("model."):
-                new_key = key[6:]  # Remove "model." prefix
+                new_key = key[6:]  
                 new_state_dict[new_key] = value
             else:
                 new_state_dict[key] = value
@@ -144,7 +144,7 @@ def load_model(checkpoint_path, simclr_ckpt_path, task_type="classification", im
     model.eval()
     model.to(DEVICE)
     
-    print(f"Model loaded successfully on {DEVICE}")
+    print(f"Model loaded  on {DEVICE}")
     return model
 
 def create_test_dataset(csv_path, root_dir, image_type="quad", image_size=(96, 96, 96), dataset_name=""):
@@ -156,7 +156,7 @@ def create_test_dataset(csv_path, root_dir, image_type="quad", image_size=(96, 9
     if image_type == "single":
         transform = get_validation_transform(image_size=image_size)
         
-        # Select appropriate dataset class based on task
+        #select dataset class 
         if "brain_age" in dataset_name:
             dataset = BrainAgeDataset(csv_path=csv_path, root_dir=root_dir, transform=transform)
         elif "mci" in dataset_name or "stroke" in dataset_name:
@@ -164,7 +164,7 @@ def create_test_dataset(csv_path, root_dir, image_type="quad", image_size=(96, 9
         elif "sequence" in dataset_name or "multiclass" in dataset_name:
             dataset = SequenceDataset(csv_path=csv_path, root_dir=root_dir, transform=transform)
         else:
-            # Default to BrainAgeDataset for backwards compatibility
+            
             dataset = BrainAgeDataset(csv_path=csv_path, root_dir=root_dir, transform=transform)
             print(f"Warning: Unknown single image task '{dataset_name}', using BrainAgeDataset")
         
@@ -192,7 +192,7 @@ def run_inference(model, dataset, collate_fn, batch_size=1, task_type="classific
     """
     print("Running inference...")
     
-    # Create dataloader
+    # spinup dataloader
     dataloader = DataLoader(
         dataset, 
         batch_size=batch_size, 
@@ -201,9 +201,9 @@ def run_inference(model, dataset, collate_fn, batch_size=1, task_type="classific
         collate_fn=collate_fn
     )
     
-    raw_outputs = []  # Store raw model outputs
-    predictions = []  # Store processed predictions (probabilities for classification)
-    class_predictions = []  # Store class predictions for multiclass
+    raw_outputs = []  
+    predictions = []  
+    class_predictions = []  
     labels = []
     
     with torch.no_grad():
@@ -221,26 +221,26 @@ def run_inference(model, dataset, collate_fn, batch_size=1, task_type="classific
             # Forward pass
             outputs = model(images)
             
-            # Store raw outputs
+            
             raw_outputs.extend(outputs.cpu().numpy())
             
             # Process outputs based on task type
             if task_type == "classification":
-                # Apply sigmoid for binary classification
+                
                 probs = torch.sigmoid(outputs)
                 predictions.extend(probs.cpu().numpy().flatten())
-                # Binary class predictions (0 or 1)
+               
                 class_preds = (probs > 0.5).int()
                 class_predictions.extend(class_preds.cpu().numpy().flatten())
             elif task_type == "multiclass":
-                # Apply softmax for multiclass classification
+               
                 probs = torch.softmax(outputs, dim=1)
-                predictions.extend(probs.cpu().numpy())  # Keep all class probabilities
-                # Class predictions using argmax
+                predictions.extend(probs.cpu().numpy()) 
+               
                 class_preds = torch.argmax(outputs, dim=1)
                 class_predictions.extend(class_preds.cpu().numpy().flatten())
             else:
-                # For regression, predictions are same as raw outputs
+                
                 predictions.extend(outputs.cpu().numpy().flatten())
             
             # Store labels
@@ -259,16 +259,16 @@ def save_predictions(csv_path, raw_outputs, predictions, class_predictions, outp
     """
     print(f"Saving predictions to {output_path}")
     
-    # Load original CSV
+    #  CSV
     df = pd.read_csv(csv_path)
     
-    # Add predictions column based on task type
+  
     if task_type == "classification":
-        df['model_output'] = raw_outputs.flatten()  # Raw logits
-        df['predicted_probability'] = predictions  # Sigmoid probabilities
-        df['predicted_class'] = class_predictions  # Binary predictions
+        df['model_output'] = raw_outputs.flatten() 
+        df['predicted_probability'] = predictions  
+        df['predicted_class'] = class_predictions  
     elif task_type == "multiclass":
-        # Raw logits for each class
+       
         for i in range(raw_outputs.shape[1]):
             df[f'model_output_class_{i}'] = raw_outputs[:, i]
         
@@ -276,49 +276,17 @@ def save_predictions(csv_path, raw_outputs, predictions, class_predictions, outp
         for i in range(predictions.shape[1]):
             df[f'predicted_probability_class_{i}'] = predictions[:, i]
         
-        # Predicted class (argmax)
+        # Predicted class
         df['predicted_class'] = class_predictions
     else:
-        # For regression, only save model output
-        df['predicted_value'] = raw_outputs.flatten()  # Raw model output
+        # For regression only save model output
+        df['predicted_value'] = raw_outputs.flatten() 
     
-    # Save to output path
+    # Save to output 
     df.to_csv(output_path, index=False)
     print(f"Results saved successfully!")
     
-    # Print some statistics
-    print("\n=== PREDICTION STATISTICS ===")
-    if task_type == "classification":
-        print(f"Raw model outputs (logits):")
-        print(f"  Mean: {raw_outputs.flatten().mean():.4f}")
-        print(f"  Std: {raw_outputs.flatten().std():.4f}")
-        print(f"  Min: {raw_outputs.flatten().min():.4f}")
-        print(f"  Max: {raw_outputs.flatten().max():.4f}")
-        print(f"Predicted probabilities:")
-        print(f"  Mean: {predictions.mean():.4f}")
-        print(f"  Std: {predictions.std():.4f}")
-        print(f"  Min: {predictions.min():.4f}")
-        print(f"  Max: {predictions.max():.4f}")
-        print(f"Predicted positive cases: {(class_predictions == 1).sum()}/{len(class_predictions)}")
-    elif task_type == "multiclass":
-        print(f"Raw model outputs (logits):")
-        print(f"  Shape: {raw_outputs.shape}")
-        print(f"  Mean: {raw_outputs.mean():.4f}")
-        print(f"  Std: {raw_outputs.std():.4f}")
-        print(f"Predicted probabilities:")
-        print(f"  Shape: {predictions.shape}")
-        print(f"  Mean: {predictions.mean():.4f}")
-        print(f"  Std: {predictions.std():.4f}")
-        print(f"Class distribution:")
-        unique, counts = np.unique(class_predictions, return_counts=True)
-        for cls, count in zip(unique, counts):
-            print(f"  Class {cls}: {count}/{len(class_predictions)} ({100*count/len(class_predictions):.1f}%)")
-    else:
-        print(f"Predicted values:")
-        print(f"  Mean: {raw_outputs.flatten().mean():.4f}")
-        print(f"  Std: {raw_outputs.flatten().std():.4f}")
-        print(f"  Min: {raw_outputs.flatten().min():.4f}")
-        print(f"  Max: {raw_outputs.flatten().max():.4f}")
+    
 
 def calculate_metrics(y_true, raw_outputs, predictions, class_predictions, task_type, dataset_name):
     """
@@ -361,7 +329,7 @@ def calculate_metrics(y_true, raw_outputs, predictions, class_predictions, task_
                 "f1_score": float(f1_score(y_true_flat, y_pred_class, average='binary', zero_division=0))
             })
             
-            # AUC (only if both classes present)
+            # AUC 
             if len(np.unique(y_true_flat)) > 1:
                 metrics["auc"] = float(roc_auc_score(y_true_flat, y_pred_probs))
             else:
@@ -388,7 +356,7 @@ def calculate_metrics(y_true, raw_outputs, predictions, class_predictions, task_
                 "weighted_f1": float(f1_score(y_true_flat, y_pred_class, average='weighted', zero_division=0))
             })
             
-            # Macro AUC (only if all classes present and probabilities available)
+            # Macro AUC 
             try:
                 if len(np.unique(y_true_flat)) > 1 and y_pred_probs.shape[1] > 1:
                     metrics["macro_auc"] = float(roc_auc_score(y_true_flat, y_pred_probs, multi_class='ovr', average='macro'))
@@ -471,7 +439,7 @@ def main():
                 num_classes=config["num_classes"]
             )
             
-            # Create test dataset
+            # dataset
             test_dataset, collate_fn = create_test_dataset(
                 csv_path=config["test_csv_path"],
                 root_dir=config["root_dir"],
@@ -489,7 +457,7 @@ def main():
                 task_type=config["task_type"]
             )
             
-            # Save results
+            
             save_predictions(
                 csv_path=config["test_csv_path"],
                 raw_outputs=raw_outputs,
@@ -524,16 +492,9 @@ def main():
             
             print(f" {dataset_key} completed successfully!")
             
-            # Print key metrics
-            if config["task_type"] == "regression":
-                print(f"    MAE: {metrics.get('mae', 'N/A'):.4f}, RMSE: {metrics.get('rmse', 'N/A'):.4f}, R²: {metrics.get('r2_score', 'N/A'):.4f}")
-            elif config["task_type"] == "classification":
-                print(f"    AUC: {metrics.get('auc', 'N/A'):.4f}, F1: {metrics.get('f1_score', 'N/A'):.4f}, Accuracy: {metrics.get('accuracy', 'N/A'):.4f}")
-            elif config["task_type"] == "multiclass":
-                print(f"    Balanced Acc: {metrics.get('balanced_accuracy', 'N/A'):.4f}, Macro F1: {metrics.get('macro_f1', 'N/A'):.4f}, Macro AUC: {metrics.get('macro_auc', 'N/A'):.4f}")
-            
+           
         except Exception as e:
-            print(f"Error processing {dataset_key}: {str(e)}")
+            print(f"Error : {str(e)}")
             all_metrics["dataset_metrics"][dataset_key] = {
                 "dataset": dataset_key,
                 "error": str(e),
@@ -541,26 +502,15 @@ def main():
             }
             continue
     
-    # Save metrics to JSON
+    # Save metrics 
     metrics_output_path = "inference/eval_results.json"
-    try:
-        with open(metrics_output_path, 'w') as f:
-            json.dump(all_metrics, f, indent=2)
-        print(f" Metrics saved to: {metrics_output_path}")
-    except Exception as e:
-        print(f" Error saving metrics: {str(e)}")
     
-    # Print summary
-    print("\n=== INFERENCE PIPELINE COMPLETED ===")
-    print("Processed datasets:")
-    for dataset_key in DATASETS_TO_RUN:
-        if dataset_key in DATASETS and dataset_key in all_metrics["dataset_metrics"]:
-            if "error" not in all_metrics["dataset_metrics"][dataset_key]:
-                print(f"  {dataset_key}: {DATASETS[dataset_key]['output_csv_path']}")
-            else:
-                print(f"   {dataset_key}: Failed")
-    print(f" Comprehensive metrics saved to: {metrics_output_path}")
-    print("="*50)
+    with open(metrics_output_path, 'w') as f:
+        json.dump(all_metrics, f, indent=2)
+    print(f" Metrics saved to: {metrics_output_path}")
+   
+    
+   
 
 if __name__ == "__main__":
     main() 

@@ -34,9 +34,7 @@ def extract_attention_map(vit_model, image, layer_idx=-1, img_size=(96, 96, 96),
             self.attn_weights = None
 
         def forward(self, x):
-            # The original implementation of the attention module may not return
-            # the attention weights. This wrapper recalculates them to ensure they
-            # are captured. This is based on the standard ViT attention mechanism.
+           
             output = self.original_attn_module(x)
             if hasattr(self.original_attn_module, 'qkv'):
                 qkv = self.original_attn_module.qkv(x)
@@ -54,11 +52,11 @@ def extract_attention_map(vit_model, image, layer_idx=-1, img_size=(96, 96, 96),
         if hasattr(block, 'attn'):
             block.attn = AttentionWithWeights(block.attn)
 
-    # Perform a forward pass to execute the wrapped modules and capture weights
+    # Perform a forward pass 
     with torch.no_grad():
         _ = vit_model(image)
 
-    # Collect the captured attention weights from each block
+    
     for i, block in enumerate(vit_model.blocks):
         if hasattr(block.attn, 'attn_weights') and block.attn.attn_weights is not None:
             attention_maps[f"layer_{i}"] = block.attn.attn_weights.detach()
@@ -76,14 +74,14 @@ def extract_attention_map(vit_model, image, layer_idx=-1, img_size=(96, 96, 96),
     layer_attn = attention_maps[layer_name]
     # Average attention across all heads
     head_attn = layer_attn[0].mean(dim=0)
-    # Get attention from the [CLS] token to all other image patches
+    
     cls_attn = head_attn[0, 1:]
 
     # Reshape the 1D attention vector into a 3D volume
     patches_per_dim = img_size[0] // patch_size
     total_patches = patches_per_dim ** 3
     
-    # Pad or truncate if the number of patches doesn't align
+    
     if cls_attn.shape[0] != total_patches:
         if cls_attn.shape[0] > total_patches:
             cls_attn = cls_attn[:total_patches]
@@ -103,7 +101,7 @@ def extract_attention_map(vit_model, image, layer_idx=-1, img_size=(96, 96, 96),
         align_corners=False
     ).squeeze()
 
-    # Normalize the map to [0, 1] for visualization
+    # Normalize 
     upsampled_attn = upsampled_attn.cpu().numpy()
     upsampled_attn = (upsampled_attn - upsampled_attn.min()) / (upsampled_attn.max() - upsampled_attn.min())
     return upsampled_attn
@@ -120,7 +118,7 @@ def generate_saliency_maps(model, data_loader, output_dir, device, layer_idx=-1)
         labels = sample['label']
         
         # Get patient ID from the file path if available
-        # This is a simplified approach - you might need to modify based on your dataset structure
+       
         batch_size = inputs.shape[0]
         
         for i in range(batch_size):
@@ -137,13 +135,13 @@ def generate_saliency_maps(model, data_loader, output_dir, device, layer_idx=-1)
                     patch_size=16
                 )
                 
-                # Save input image and saliency map
+                
                 inputs_np = input_tensor.squeeze().cpu().detach().numpy()
                 
                 input_nifti = nib.Nifti1Image(inputs_np, np.eye(4))
                 saliency_nifti = nib.Nifti1Image(saliency_map, np.eye(4))
                 
-                # Create unique filename
+                
                 filename_base = f"sample_{i:04d}_label_{label:.2f}"
                 
                 # Save files
@@ -172,12 +170,12 @@ def main():
                       help='Number of workers for data loading (default: 1)')
     
     args = parser.parse_args()
-    device = torch.device("cpu")  # Use CPU for saliency generation to avoid memory issues
+    device = torch.device("cpu")  # Use CPU for saliency generation
     
-    # Create output directory if it doesn't exist
+   
     os.makedirs(args.output_dir, exist_ok=True)
     
-    # Initialize dataset and dataloader with validation transforms
+    # load dataset and dataloader with validation transforms
     dataset = BrainAgeDataset(
         csv_path=args.input_csv,
         root_dir=args.root_dir,
@@ -192,11 +190,11 @@ def main():
         pin_memory=False  # Set to False for CPU processing
     )
     
-    # Load ViT BrainIAC model
+    # Load brainiac
     model = load_brainiac(args.checkpoint, device)
     model = model.to(device)
     
-    # Generate saliency maps
+    # Generate saliency 
     generate_saliency_maps(model, dataloader, args.output_dir, device, args.layer)
     
     print(f"ViT attention-based saliency maps generated and saved to {args.output_dir}")

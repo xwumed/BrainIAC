@@ -56,31 +56,9 @@ See [quickstart.ipynb](./src/quickstart.ipynb) to get started on how to preproce
 - [Tumor Segmentation](./docs/downstream_tasks/tumor_segmentation.md)
 
 
-## Application Demos
+## Brainiac Platform
 
-Test BrainIAC's downstream models on your own data with our interactive demos, hosted on hugging face spaces!
-
-- [**Brain Age Prediction**](https://huggingface.co/spaces/Divytak/BrainIAC-Brainage-V0): Brain age prediction from structural T1 MRI scans
-  - Upload T1w MRI scan to get the brain age
-
-- [**Mild Cognitive Impairment (MCI) Classification**](https://huggingface.co/spaces/Divytak/BrainIAC-MildCognitiveImpairment_Classification): Mild cognitive impairment risk prediction from structural T1 MRI scans
-  - Upload T1w MRI scan to get the MCI risk score
-
-interactive demos coming soon for other downstream tasks!
-
-## Docker
-
-For local deployment, run BrainIAC downstream model application using Docker:
-
-***IDH app***
-```bash
-docker run -p 7860:7860 --name brainiac-idh-app divyanshutak1/brainiac-idh:latest
-```
-
-***MCI app***
-```bash
-docker run -p 7860:7860 divyanshutak1/brainiac-mci:latest
-```
+BrainIAC and all the downstream models are hosted at [**Brainiac Platform**](https://www.brainiac-platform.com/) for inference. The platform provides an interface for uploading the structural brain MRI data and running inference on the models including BrainIAC, brain age, MCI classification, time since stroke prediction etc.
 
 
 
