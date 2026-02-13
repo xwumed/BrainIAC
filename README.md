@@ -46,12 +46,12 @@ See [quickstart.ipynb](./src/quickstart.ipynb) to get started on how to preproce
 
 ## Automated Feature Extraction
 
-We provide an automated pipeline script `src/extract_features_pipeline.py` to streamline the process of feature extraction from a folder of MRI images. This script handles data organization, preprocessing (registration and brain extraction), and feature extraction in a single command.
+We provide an automated pipeline script `extract_features_pipeline.py` to streamline the process of feature extraction from a folder of MRI images. This script handles data organization, preprocessing (registration and brain extraction), and feature extraction in a single command.
 
 ### Usage
 
 ```bash
-python src/extract_features_pipeline.py --input_dir /path/to/mri/data
+python extract_features_pipeline.py --input_dir /path/to/mri/data
 ```
 
 **Arguments:**

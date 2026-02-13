@@ -27,11 +27,15 @@ def main():
     output_dir = os.path.abspath(args.output_dir)
     checkpoint = os.path.abspath(args.checkpoint)
     
-    # Script locations (assuming this script is in src/)
+    print(f"Input Directory (Resolved): {input_dir}")
+    print(f"Output Directory (Resolved): {output_dir}")
+    print(f"Checkpoint Path (Resolved): {checkpoint}")
+    
+    # Script locations (assuming this script is in root, and others in src/)
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    preprocess_script = os.path.join(script_dir, "preprocessing", "mri_preprocess_3d_simple.py")
-    feature_script = os.path.join(script_dir, "get_brainiac_features.py")
-    template_img = os.path.join(script_dir, "preprocessing", "atlases", "temp_head.nii.gz")
+    preprocess_script = os.path.join(script_dir, "src", "preprocessing", "mri_preprocess_3d_simple.py")
+    feature_script = os.path.join(script_dir, "src", "get_brainiac_features.py")
+    template_img = os.path.join(script_dir, "src", "preprocessing", "atlases", "temp_head.nii.gz")
     
     # Setup directories
     unprocessed_dir = os.path.join(output_dir, "data", "unprocessed")
