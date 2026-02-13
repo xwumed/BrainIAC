@@ -1,0 +1,16 @@
+# Ignore large data directories
+data/
+results_test/
+results/
+src/checkpoints/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore IDE settings
+.vscode/
+.idea/
+
+# Ignore system files
+.DS_Store
