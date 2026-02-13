@@ -51,12 +51,12 @@ We provide an automated pipeline script `src/extract_features_pipeline.py` to st
 ### Usage
 
 ```bash
-python src/extract_features_pipeline.py --input_dir /path/to/mri/data --output_dir /path/to/save/results
+python src/extract_features_pipeline.py --input_dir /path/to/mri/data
 ```
 
 **Arguments:**
 *   `--input_dir`: Path to the directory containing input MRI images (`.nii.gz`). The script recursively searches for all NIfTI files.
-*   `--output_dir`: Directory where the results will be saved.
+*   `--output_dir` (Optional): Directory where the results will be saved (default: `brainiac_results`).
 *   `--checkpoint` (Optional): Path to the BrainIAC checkpoint (default: `src/checkpoints/BrainIAC.ckpt`).
 
 **Output:**

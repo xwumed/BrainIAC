@@ -17,7 +17,7 @@ def run_command(cmd):
 def main():
     parser = argparse.ArgumentParser(description="BrainIAC Feature Extraction Pipeline")
     parser.add_argument("--input_dir", type=str, required=True, help="Directory containing input MRI images (.nii.gz)")
-    parser.add_argument("--output_dir", type=str, required=True, help="Directory to save output results")
+    parser.add_argument("--output_dir", type=str, default="brainiac_results", help="Directory to save output results (default: brainiac_results)")
     parser.add_argument("--checkpoint", type=str, default="src/checkpoints/BrainIAC.ckpt", help="Path to BrainIAC checkpoint")
     
     args = parser.parse_args()
