@@ -44,6 +44,27 @@ Download the BrainIAC weights and downstream model [checkpoints](https://www.dro
 
 See [quickstart.ipynb](./src/quickstart.ipynb) to get started on how to preprocess data, load BrainIAC to extract features, generate and visualize saliency maps. We provide data samples from publicly available [UPENN-GBM](https://www.cancerimagingarchive.net/collection/upenn-gbm/) [License](https://creativecommons.org/licenses/by/4.0/) (with no modifications to the provided preprocessed images) and the [Pixar](https://openneuro.org/datasets/ds000228/versions/1.1.1)  [License](https://creativecommons.org/public-domain/cc0/) dataset in the [sample_data](src/data/sample/processed/) directory. 
 
+## Automated Feature Extraction
+
+We provide an automated pipeline script `src/extract_features_pipeline.py` to streamline the process of feature extraction from a folder of MRI images. This script handles data organization, preprocessing (registration and brain extraction), and feature extraction in a single command.
+
+### Usage
+
+```bash
+python src/extract_features_pipeline.py --input_dir /path/to/mri/data --output_dir /path/to/save/results
+```
+
+**Arguments:**
+*   `--input_dir`: Path to the directory containing input MRI images (`.nii.gz`). The script recursively searches for all NIfTI files.
+*   `--output_dir`: Directory where the results will be saved.
+*   `--checkpoint` (Optional): Path to the BrainIAC checkpoint (default: `src/checkpoints/BrainIAC.ckpt`).
+
+**Output:**
+The script generates a `features.csv` file in the output directory containing:
+*   `case`: The patient/case ID (derived from the parent folder name).
+*   `sequence`: The MRI sequence type (derived from the filename suffix, e.g., `t1c`, `t1w`).
+*   `Feature_0`...`Feature_767`: The extracted BrainIAC features. 
+
 
 ## Train and Infer Downstream Models
 
