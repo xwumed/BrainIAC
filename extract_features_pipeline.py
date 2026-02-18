@@ -17,14 +17,22 @@ def run_command(cmd):
 def main():
     parser = argparse.ArgumentParser(description="BrainIAC Feature Extraction Pipeline")
     parser.add_argument("--input_dir", type=str, required=True, help="Directory containing input MRI images (.nii.gz)")
-    parser.add_argument("--output_dir", type=str, default="brainiac_results", help="Directory to save output results (default: brainiac_results)")
+    parser.add_argument("--output_dir", type=str, default=None, help="Directory to save output results (default: input_dir + '_brainiac')")
     parser.add_argument("--checkpoint", type=str, default="src/checkpoints/BrainIAC.ckpt", help="Path to BrainIAC checkpoint")
     
     args = parser.parse_args()
     
     # Absolute paths
     input_dir = os.path.abspath(args.input_dir)
-    output_dir = os.path.abspath(args.output_dir)
+    
+    # Determine output directory
+    if args.output_dir:
+        output_dir = os.path.abspath(args.output_dir)
+    else:
+        # Default: input_dir + "_brainiac"
+        # Handle trailing slash if present to get clean dirname
+        clean_input_path = input_dir.rstrip(os.sep)
+        output_dir = clean_input_path + "_brainiac"
     checkpoint = os.path.abspath(args.checkpoint)
     
     print(f"Input Directory (Resolved): {input_dir}")
@@ -71,13 +79,25 @@ def main():
     print("==================================================")
     print("Step 2: MRI Preprocessing (Registration + Brain Extraction)")
     print("==================================================")
-    cmd_preprocess = [
-        sys.executable, preprocess_script,
-        "--temp_img", template_img,
-        "--input_dir", unprocessed_dir,
-        "--output_dir", processed_dir
-    ]
-    run_command(cmd_preprocess)
+    # Resume: check if all expected processed files already exist
+    unprocessed_files = glob.glob(os.path.join(unprocessed_dir, "*.nii.gz"))
+    all_processed = True
+    for uf in unprocessed_files:
+        expected_processed = os.path.join(processed_dir, os.path.basename(uf))
+        if not os.path.exists(expected_processed):
+            all_processed = False
+            break
+    
+    if all_processed and len(unprocessed_files) > 0:
+        print(f"[Resume] All {len(unprocessed_files)} files already processed. Skipping preprocessing.")
+    else:
+        cmd_preprocess = [
+            sys.executable, preprocess_script,
+            "--temp_img", template_img,
+            "--input_dir", unprocessed_dir,
+            "--output_dir", processed_dir
+        ]
+        run_command(cmd_preprocess)
     
     print("==================================================")
     print("Step 3: Generating Manifest CSV")
@@ -105,24 +125,29 @@ def main():
     print("==================================================")
     print("Step 4: Feature Extraction")
     print("==================================================")
-    cmd_features = [
-        sys.executable, feature_script,
-        "--checkpoint", checkpoint,
-        "--input_csv", temp_csv,
-        "--output_csv", features_csv,
-        "--root_dir", processed_dir
-    ]
-    run_command(cmd_features)
+    if os.path.exists(features_csv):
+        print(f"[Resume] Features CSV already exists: {features_csv}. Skipping feature extraction.")
+    else:
+        cmd_features = [
+            sys.executable, feature_script,
+            "--checkpoint", checkpoint,
+            "--input_csv", temp_csv,
+            "--output_csv", features_csv,
+            "--root_dir", processed_dir
+        ]
+        run_command(cmd_features)
     
     print("==================================================")
     print("Step 5: Merging metadata into features")
     print("==================================================")
     features_df = pd.read_csv(features_csv)
-    # Prepend case and sequence columns
-    features_df.insert(0, "case", manifest_df["case"].values)
-    features_df.insert(1, "sequence", manifest_df["sequence"].values)
-    features_df.to_csv(features_csv, index=False)
-    print(f"Added 'case' and 'sequence' columns to features CSV.")
+    if "case" in features_df.columns:
+        print("[Resume] Features CSV already contains 'case' column. Skipping merge.")
+    else:
+        features_df.insert(0, "case", manifest_df["case"].values)
+        features_df.insert(1, "sequence", manifest_df["sequence"].values)
+        features_df.to_csv(features_csv, index=False)
+        print(f"Added 'case' and 'sequence' columns to features CSV.")
     
     print("==================================================")
     print("Pipeline Complete!")

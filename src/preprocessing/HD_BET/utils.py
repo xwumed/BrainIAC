@@ -111,5 +111,5 @@ subfolders = subdirs  # I am tired of confusing those
 def maybe_mkdir_p(directory):
     splits = directory.split("/")[1:]
     for i in range(0, len(splits)):
-        if not os.path.isdir(os.path.join("", *splits[:i+1])):
-            os.mkdir(os.path.join("", *splits[:i+1]))
+        if not os.path.isdir(os.path.join("/", *splits[:i+1])):
+            os.mkdir(os.path.join("/", *splits[:i+1]))

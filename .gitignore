@@ -1,7 +1,5 @@
 # Ignore large data directories
-data/
-results_test/
-results/
+
 src/checkpoints/
 
 # Ignore Python cache
